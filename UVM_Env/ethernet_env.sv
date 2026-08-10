@@ -10,6 +10,7 @@ class ethernet_env extends uvm_env;
     // Component Handles
     ethernet_agent      agent;
     ethernet_scoreboard scoreboard;
+    ethernet_coverage   cov;
 
     // Constructor
     function new(string name = "ethernet_env", uvm_component parent = null);
@@ -22,6 +23,7 @@ class ethernet_env extends uvm_env;
 
         agent      = ethernet_agent      ::type_id::create("agent", this);
         scoreboard = ethernet_scoreboard ::type_id::create("scoreboard", this);
+        cov        = ethernet_coverage   ::type_id::create("cov", this);
 
     endfunction
 
@@ -30,6 +32,11 @@ class ethernet_env extends uvm_env;
         agent.driver.analysis_port.connect(scoreboard.expected_imp);
 
         agent.dec_mon.analysis_port.connect(scoreboard.actual_imp);
+
+        agent.driver.analysis_port.connect(cov.analysis_export);
+
+        //agent.enc_mon.analysis_port.connect(cov.analysis_export);
+
     endfunction
 
 endclass

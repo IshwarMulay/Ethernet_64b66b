@@ -2,8 +2,16 @@
 
 `include "uvm_macros.svh"
 
+`include "../RTL/pkg.sv"
 // Interface
 `include "ethernet_if.sv"
+
+`include "../RTL/encoder.sv"
+`include "../RTL/sync_fifo.sv"
+`include "../RTL/scrambler.sv"
+`include "../RTL/descrambler.sv"
+`include "../RTL/decoder.sv"
+`include "../RTL/top.sv"
 
 // Transaction
 `include "ethernet_transaction.sv"
@@ -13,6 +21,7 @@
 `include "encoder_monitor.sv"
 `include "scr_descr_monitor.sv"
 `include "decoder_monitor.sv"
+`include "ethernet_coverage.sv"
 `include "ethernet_scoreboard.sv"
 `include "ethernet_agent.sv"
 `include "ethernet_env.sv"
